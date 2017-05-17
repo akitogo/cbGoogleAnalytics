@@ -1,4 +1,4 @@
-# cbReCaptcha
+# cbGoogleAnalytics
 Implements Google Analytics for Contentbox 3.x
 
 ## Installation
@@ -7,7 +7,10 @@ Implements Google Analytics for Contentbox 3.x
 ```
 box install cbGoogleAnalytics
 ```
+## Why should you use it?
+This module add to admin module section some config options for Google Analytics
 
+Besides ease of use it disables tracking for page previews
 
 ## Written by
 www.akitogo.com
