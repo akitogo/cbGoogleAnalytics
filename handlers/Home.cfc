@@ -15,7 +15,7 @@ component{
 		event.paramValue( "anonymizeIp", false );
 		event.paramValue( "DisplayFeatures", false );
 		event.paramValue( "EnhancedLinkAttribution", false );
-		event.paramValue( "Ecommerce", "" );
+		event.paramValue( "Ecommerce", "off" );
 		
 		var args 	= { name="cb_GoogleAnalytics" };
 		var allsettings = settingService.findWhere( criteria=args );
@@ -36,7 +36,7 @@ component{
 			,anonymizeIp=false
 			,DisplayFeatures=false
 			,EnhancedLinkAttribution=false
-			,Ecommerce=''
+			,Ecommerce='off'
 			};
 
 		// iterate over settings

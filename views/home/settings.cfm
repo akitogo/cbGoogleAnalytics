@@ -77,8 +77,8 @@
        			 	<div class="controls">
 		                #html.radioButton(
 		                    name="Ecommerce",
-		                    checked=(rc.Ecommerce eq ''),
-		                    value=''
+		                    checked=(rc.Ecommerce eq 'off'),
+		                    value='off'
 		                )# Off
 		                #html.radioButton(
 		                    name="Ecommerce",
