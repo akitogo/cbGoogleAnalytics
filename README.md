@@ -2,13 +2,13 @@
 Implements Google Analytics for Contentbox 3.x
 
 ## Installation
-- install the module via commandbox 
+- install module via Commandbox 
 
 ```
 box install cbGoogleAnalytics
 ```
 ## Why should you use it?
-This module add to admin module section some config options for Google Analytics
+This module adds to admin module section some config options for Google Analytics
 
 Besides ease of use it disables tracking for page previews
 
