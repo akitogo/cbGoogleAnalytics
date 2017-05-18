@@ -11,6 +11,8 @@ box install cbGoogleAnalytics
 This module adds to admin module section some config options for Google Analytics
 
 Besides ease of use it disables tracking for page previews
+## Version
+1.1 Added scroll depth tracker
 
 ## Written by
 www.akitogo.com

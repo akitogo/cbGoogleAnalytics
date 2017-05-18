@@ -16,6 +16,7 @@ component{
 		event.paramValue( "DisplayFeatures", false );
 		event.paramValue( "EnhancedLinkAttribution", false );
 		event.paramValue( "Ecommerce", "off" );
+		event.paramValue( "scrollDepth", false );
 		
 		var args 	= { name="cb_GoogleAnalytics" };
 		var allsettings = settingService.findWhere( criteria=args );
@@ -37,6 +38,7 @@ component{
 			,DisplayFeatures=false
 			,EnhancedLinkAttribution=false
 			,Ecommerce='off'
+			,scrollDepth=false
 			};
 
 		// iterate over settings

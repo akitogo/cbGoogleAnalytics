@@ -36,8 +36,29 @@ component extends="coldbox.system.Interceptor"{
   if(ga.EnhancedLinkAttribution) writeOutput(" ga('require', 'linkid'); ");
   if(ga.Ecommerce eq "ecommerce") writeOutput(" ga('require', 'ecommerce'); ");
   if(ga.Ecommerce eq "enhancedecommerce") writeOutput(" ga('require', 'ec'); ");
+  if(ga.scrollDepth) writeOutput(" // scroll tracking configuration object
+  var config = {
+  	 action : 'Pageview End',
+  beacon : true,
+  category : 'Page',
+  debug : false,
+  delay : true,
+  labelNoScroll : 'Did Not Scroll',
+  labelScroll : 'Did Scroll',
+  sampleRate : 100,
+  scrollThreshold : 10,
+  setPage : true,
+  timeout : 300,
+  timeThreshold : 15,
+  metric : null,
+  maxTimeOnPage : 30
+  };
+  // require plugin
+  ga('require', 'scrollDepthTracker', '#event.getModuleRoot('cbGoogleAnalytics')#/includes/js/scroll-depth-tracker.js', config);
+");
   writeOutput(" ga('send', 'pageview');");
   writeOutput(" </script> ");
+
     }
     		appendToBuffer( toBuffer );		
 

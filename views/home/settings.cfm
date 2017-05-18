@@ -92,7 +92,21 @@
 		                    value='enhancedecommerce'
 		                )# Enhanced Ecommerce 		                
        			 	</div>    	
-				</div>				
+				</div>	
+				<!--- Enhanced Link Attribution 												--->
+       			 <div class="form-group">   
+       			 	<label class="control-label" for="TrackScrollDepth">Track Scroll Depth:</label>
+       			 	<br />
+       			 	<small>Tracking how deep a user scrolls down a page, in particular, can be extremely useful in measuring user engagement with content. For detailed explanation, see this <a href="https://serps.com/blog/building-a-better-scroll-depth-tracking-plugin-google-analytics/" target="_blank" >blog post</a></small>
+       			 	<br />
+       			 	<div class="controls">
+			 		#html.checkbox(
+							name    = "scrollDepth",
+							label   = "Enable:&nbsp;",
+							checked	= rc.scrollDepth
+						)#       
+       			 	</div>    	
+				</div>							
 	            <div class="form-actions">
 	                #html.button(type="submit", value="Save Settings", class="btn btn-danger" )#
 	            </div>  
