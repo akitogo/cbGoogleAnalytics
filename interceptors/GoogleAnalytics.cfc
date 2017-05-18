@@ -12,16 +12,35 @@ component extends="coldbox.system.Interceptor"{
      * add to head
      */
 	public void function cbui_beforeHeadEnd(event, interceptData) {
-		if(reFindNoCase( "contentbox-ui:.*preview", event.getCurrentEvent() ))
+		// we don't track preview events
+		if(reFindNoCase( "contentbox-ui:.*preview", event.getCurrentEvent() )){
 			appendToBuffer( "<!-- No Google Analytics For Preview -->" );	
+			return;			
+		}
+		
+		// No Google Analytics For Admin Users				
+		// the interceptor is called with prc in arguments	
+		if(	prc.oCurrentAuthor.isLoggedIn() 
+			and prc.oCurrentAuthor.checkPermission( "CONTENTBOX_ADMIN,PAGES_ADMIN,PAGES_EDITOR,ENTRIES_ADMIN,ENTRIES_EDITOR" )
+		) {
+			appendToBuffer( "<!-- No Google Analytics For Admin Users -->" );	
+			return;			
+		}
+		
+		
+		
 		var toBuffer = '';
+		
+		// settings
 		var settingStruct = settingService.getSetting( "cb_GoogleAnalytics","" );
 		
+		// if settings not valid return
 		if(!isJson(settingStruct))
 			return;
 			
 		var ga=deserializeJson(settingStruct);
 			
+		// if tracking id is empty makes no sense to proceed
 		if(trim(ga.trackingId) eq '') 
 			return;
 			
@@ -36,31 +55,12 @@ component extends="coldbox.system.Interceptor"{
   if(ga.EnhancedLinkAttribution) writeOutput(" ga('require', 'linkid'); ");
   if(ga.Ecommerce eq "ecommerce") writeOutput(" ga('require', 'ecommerce'); ");
   if(ga.Ecommerce eq "enhancedecommerce") writeOutput(" ga('require', 'ec'); ");
-  if(ga.scrollDepth) writeOutput(" // scroll tracking configuration object
-  var config = {
-  	 action : 'Pageview End',
-  beacon : true,
-  category : 'Page',
-  debug : false,
-  delay : true,
-  labelNoScroll : 'Did Not Scroll',
-  labelScroll : 'Did Scroll',
-  sampleRate : 100,
-  scrollThreshold : 10,
-  setPage : true,
-  timeout : 300,
-  timeThreshold : 15,
-  metric : null,
-  maxTimeOnPage : 30
-  };
-  // require plugin
-  ga('require', 'scrollDepthTracker', '#event.getModuleRoot('cbGoogleAnalytics')#/includes/js/scroll-depth-tracker.js', config);
-");
+  if(ga.scrollDepth) writeOutput(" var config = { action : 'Pageview End', beacon : true, category : 'Page', debug : false,  delay : true, labelNoScroll : 'Did Not Scroll',
+  labelScroll : 'Did Scroll', sampleRate : 100, scrollThreshold : 10, setPage : true, timeout : 300, timeThreshold : 15, metric : null, maxTimeOnPage : 30
+  ga('require', 'scrollDepthTracker', '#event.getModuleRoot('cbGoogleAnalytics')#/includes/js/scroll-depth-tracker.js', config); ");
   writeOutput(" ga('send', 'pageview');");
   writeOutput(" </script> ");
-
-    }
-    		appendToBuffer( toBuffer );		
-
-}
+  }//end savecontent
+   		appendToBuffer( toBuffer );		
+	}
 }
