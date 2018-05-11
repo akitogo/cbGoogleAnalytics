@@ -11,10 +11,10 @@ component extends="coldbox.system.Interceptor"{
     /**
      * add to head
      */
-	public void function cbui_beforeHeadEnd(event, interceptData) {
+	public void function cbui_beforeHeadEnd(event, interceptData,buffer) {
 		// we don't track preview events
 		if(reFindNoCase( "contentbox-ui:.*preview", event.getCurrentEvent() )){
-			appendToBuffer( "<!-- No Google Analytics For Preview -->" );	
+			arguments.buffer.append( "<!-- No Google Analytics For Preview -->" );	
 			return;			
 		}
 		
@@ -23,7 +23,7 @@ component extends="coldbox.system.Interceptor"{
 		if(	prc.oCurrentAuthor.isLoggedIn() 
 			and prc.oCurrentAuthor.checkPermission( "CONTENTBOX_ADMIN,PAGES_ADMIN,PAGES_EDITOR,ENTRIES_ADMIN,ENTRIES_EDITOR" )
 		) {
-			appendToBuffer( "<!-- No Google Analytics For Admin Users -->" );	
+			arguments.buffer.append( "<!-- No Google Analytics For Admin Users -->" );	
 			return;			
 		}
 		
@@ -61,6 +61,6 @@ component extends="coldbox.system.Interceptor"{
   writeOutput(" ga('send', 'pageview');");
   writeOutput(" </script> ");
   }//end savecontent
-   		appendToBuffer( toBuffer );		
+   		arguments.buffer.append( toBuffer );		
 	}
 }

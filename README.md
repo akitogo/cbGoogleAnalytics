@@ -1,5 +1,5 @@
 # cbGoogleAnalytics
-Implements Google Analytics for Contentbox 3.x
+Implements Google Analytics for Contentbox 3.7 and 4.x
 
 ## Installation
 - install module via Commandbox 
@@ -12,6 +12,7 @@ This module adds to admin module section some config options for Google Analytic
 
 Besides ease of use it disables tracking for page previews
 ## Version
+1.2 buffer fix to make module compatible with Contentbox 3.7 and up
 1.1 Added scroll depth tracker
 
 ## Written by
