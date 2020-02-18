@@ -8,11 +8,21 @@ Implements Google Analytics for Contentbox 3.7 and 4.x
 box install cbGoogleAnalytics
 ```
 ## Why should you use it?
-This module adds to admin module section some config options for Google Analytics
+This module adds to Contentbox admin section some config options for Google Analytics
 
-Besides ease of use it disables tracking for page previews
+## How to use?
+Two interception points are used `cbui_beforeHeadEnd` and `cbui_beforeBodyEnd`
+
+`cbui_beforeHeadEnd` inserts all needed JS for Google Analytics
+
+`cbui_beforeBodyEnd` adds a page view send
+
+Besides ease of use it disables tracking for Contenbox page previews
 ## Version
+1.3 move tracking of pageview to cbui_beforeBodyEnd, restructured interceptor for better performance
+
 1.2 buffer fix to make module compatible with Contentbox 3.7 and up
+
 1.1 Added scroll depth tracker
 
 ## Written by
